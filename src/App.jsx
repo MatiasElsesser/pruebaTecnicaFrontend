@@ -1,13 +1,15 @@
+import { Home } from './components/Home'
 import './App.css'
-import { LoginButton } from './components/Login'
-import { LogoutButton } from './components/Logout'
 
 function App () {
   return (
     <>
-      <div> Hola mundo</div>
-      <LoginButton />
-      <LogoutButton />
+      <Home
+        userImg='https://avatars.githubusercontent.com/u/105026551?v=4'
+        userItems={['Literas', 'Comida de Perro', 'Comida de gato', 'Transportadoras']}
+      />
+      {/* <LoginButton />
+      <LogoutButton /> */}
     </>
   )
 }
