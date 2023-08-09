@@ -1,56 +1,56 @@
 import { profileReducer, initialState } from '../reducer/perfiles'
 import { useReducer, createContext } from 'react'
-// import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const useProfileReducer = () => {
-  // const { loginWithRedirect } = useAuth0
-  const [state, distpatch] = useReducer(profileReducer, initialState)
+  const [state, dispatch] = useReducer(profileReducer, initialState)
+  const { user, loginWithRedirect, isAuthenticated } = useAuth0()
 
   const selectInvitado = () => {
-    distpatch({
+    dispatch({
       type: 'INVITADO'
     })
   }
 
   const selectAdministrador = () => {
-    distpatch({
+    dispatch({
       type: 'ADMINISTRADOR'
     })
-    // loginWithRedirect()
+    loginWithRedirect()
   }
 
   const selectProfesional = () => {
-    distpatch({
+    dispatch({
       type: 'PROFESIONAL'
     })
-    // loginWithRedirect()
+    loginWithRedirect()
   }
 
   const selectVeterinaria = () => {
-    distpatch({
+    dispatch({
       type: 'VETERINARIA'
     })
-    // loginWithRedirect()
+    loginWithRedirect()
   }
 
   const selectCliente = () => {
-    distpatch({
+    dispatch({
       type: 'CLIENTE'
     })
-    // loginWithRedirect()
+    loginWithRedirect()
   }
 
-  return { state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria }
+  return { state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria, user, isAuthenticated }
 }
 
 export const ProfileContext = createContext()
 
 export const ProfileProvider = ({ children }) => {
-  const { state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria } = useProfileReducer()
+  const { state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria, user, isAuthenticated } = useProfileReducer()
 
   return (
     <ProfileContext.Provider
-      value={{ state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria }}
+      value={{ state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria, user, isAuthenticated }}
     >
       {children}
     </ProfileContext.Provider>

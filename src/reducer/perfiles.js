@@ -13,23 +13,19 @@ export const profileReducer = (state, action) => {
 
   switch (type) {
     case 'INVITADO' : {
-      return initialState
+      return { ...initialState }
     }
     case 'ADMINISTRADOR' : {
-      state.perfil = perfiles.ADMINISTRADOR
-      return state
+      return { ...state, perfil: perfiles.ADMINISTRADOR }
     }
     case 'PROFESIONAL' : {
-      state.perfil = perfiles.PROFESIONAL
-      return state
+      return { ...state, perfil: perfiles.PROFESIONAL }
     }
     case 'VETERINARIA' : {
-      state.perfil = perfiles.VETERINARIA
-      return state
+      return { ...state, perfil: perfiles.VETERINARIA }
     }
     case 'CLIENTE' : {
-      state.perfil = perfiles.CLIENTE
-      return state
+      return { ...state, perfil: perfiles.CLIENTE }
     }
   }
   return state

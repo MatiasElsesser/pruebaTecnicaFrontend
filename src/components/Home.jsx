@@ -1,4 +1,10 @@
-export const Home = ({ userImg, userItems }) => {
+import { useContext } from 'react'
+import { ProfileContext } from '../hooks/useProfileReducer'
+import { UserIcon } from '../icons/icons'
+
+export const Home = ({ userImg }) => {
+  const { state, user, isAuthenticated } = useContext(ProfileContext)
+  console.log(user)
   return (
     <>
 
@@ -18,10 +24,17 @@ export const Home = ({ userImg, userItems }) => {
         </section>
 
         <section className='header-search'>
-          <img src='' alt='Logotipo' />
+          <img
+            src='' alt='Logotipo'
+          />
           <input type='text' />
           <div className='header-search-user'>
-            <img src={userImg} />
+            {
+            (isAuthenticated)
+              ? <img src={user.picture} />
+              : <UserIcon />
+            }
+
             <a>Logo Carrito</a>
           </div>
         </section>
@@ -35,7 +48,7 @@ export const Home = ({ userImg, userItems }) => {
       <main>
         <nav>
           <ul>
-            {userItems.map((item, index) => {
+            {state.perfil.map((item, index) => {
               return (
                 <li key={index}>
                   <a href='#'> {item} </a>
@@ -48,7 +61,6 @@ export const Home = ({ userImg, userItems }) => {
           <p>lorem ipsun</p>
         </aside>
       </main>
-
     </>
   )
 }
