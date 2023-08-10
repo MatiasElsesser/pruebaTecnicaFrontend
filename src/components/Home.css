@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* Header styles */
 .header {
   width: 100vw;
   height: auto;
@@ -26,15 +27,59 @@
 
 .header-search {
   width: 100%;
+  margin-bottom: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.search-bar {
+.search-container {
   width: 40%;
+  display: flex;
+  align-items: center;
+  gap: 15px ;
+}
+.search-bar {
+  width: 80%;
   height: 40px;
 }
 .header-search-user {
   display: flex;
   gap: 15px ;
+}
+
+hr {
+  margin-bottom: 50px;
+  height: 20px;
+  background-color: beige;
+  opacity: .2;
+}
+.header-login {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.header-login-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+}
+.header-login-nav {
+  position: fixed;
+  left: 25px;
+  text-align: center;
+}
+.navBar-btn {
+  border-radius: 15px 15px 0 0;
+  border: none;
+  width: 100%;
+}
+/* final Header styles */
+
+/* Main styles */
+
+main {
+  width: 100%;
+  padding: 0 25px;
 }

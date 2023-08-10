@@ -1,0 +1,12 @@
+ul {
+  border-radius: 0 0 15px 15px; 
+  background-color: beige;
+  opacity: .8;
+}
+li {
+  list-style: none;
+  background-color: transparent;
+}
+li a {
+  color: #242424;
+}

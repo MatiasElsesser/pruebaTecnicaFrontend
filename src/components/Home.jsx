@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { ProfileContext } from '../hooks/useProfileReducer'
-import { UserIcon, ShopCart, ShopIcon } from '../icons/icons'
+import { UserIcon, ShopCart, ShopIcon, SearchIcon } from '../icons/icons'
 import { UserImageLabel } from './UserImageLabel'
 import { Navbar } from './Navbar'
 import { SelectProfile } from './SelectProfile'
@@ -39,7 +39,10 @@ export const Home = () => {
 
         <section className='header-search'>
           <ShopIcon className='icon' />
-          <input className='search-bar' type='text' placeholder='Buscar producto...' />
+          <div className='search-container'>
+            <SearchIcon />
+            <input className='search-bar' type='text' placeholder='Buscar producto...' />
+          </div>
           <div className='header-search-user'>
             {
               (isAuthenticated)
@@ -51,23 +54,25 @@ export const Home = () => {
           </div>
         </section>
 
+        <hr />
+
         <section className='header-login'>
-          <a href='#'>Home</a>
-          {(isAuthenticated)
-            ? <button onClick={() => logout()}> Cerrar sesión</button>
-            : <button onClick={handleClickLoadingLogin}>Iniciar sesión</button>}
+          <div className='header-login-nav'>
+            <button className='navBar-btn' onClick={handleClickMenu}> Categorias </button>
+            <nav>
+              {showBar && <Navbar />}
+            </nav>
+          </div>
+          <div className='header-login-btn'>
+            <p href='#'>{isAuthenticated ? 'Bienvenido ' + user.name : 'Home'}</p>
+            {(isAuthenticated)
+              ? <button onClick={() => logout()}> Cerrar sesión</button>
+              : <button onClick={handleClickLoadingLogin}>Iniciar sesión</button>}
+          </div>
         </section>
       </header>
 
       <main>
-        <nav>
-          <ul>
-            <li>
-              <button onClick={handleClickMenu}> Categorias </button>
-              {showBar && <Navbar />}
-            </li>
-          </ul>
-        </nav>
         <aside>
           <p>lorem ipsun</p>
         </aside>
