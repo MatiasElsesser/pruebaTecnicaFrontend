@@ -1,13 +1,27 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ProfileContext } from '../hooks/useProfileReducer'
-import { UserIcon } from '../icons/icons'
+import { UserIcon, ShopCart, ShopIcon } from '../icons/icons'
+import { UserImageLabel } from './UserImageLabel'
+import { Navbar } from './Navbar'
+import { SelectProfile } from './SelectProfile'
+import './Home.css'
 
-export const Home = ({ userImg }) => {
-  const { state, user, isAuthenticated } = useContext(ProfileContext)
-  console.log(user)
+export const Home = () => {
+  const { user, isAuthenticated, logout } = useContext(ProfileContext)
+  const [showBar, setShowBar] = useState(false)
+  const [loadingLogin, setLoadinLogin] = useState(false)
+
+  const handleClickMenu = () => {
+    setShowBar(!showBar)
+  }
+  const handleClickLoadingLogin = () => {
+    setLoadinLogin(!loadingLogin)
+  }
   return (
     <>
-
+      {
+        (loadingLogin && !isAuthenticated) && <SelectProfile cancelBtn={handleClickLoadingLogin} />
+      }
       <header className='header'>
         <section className='header-contacto'>
 
@@ -24,37 +38,34 @@ export const Home = ({ userImg }) => {
         </section>
 
         <section className='header-search'>
-          <img
-            src='' alt='Logotipo'
-          />
-          <input type='text' />
+          <ShopIcon className='icon' />
+          <input className='search-bar' type='text' placeholder='Buscar producto...' />
           <div className='header-search-user'>
             {
-            (isAuthenticated)
-              ? <img src={user.picture} />
-              : <UserIcon />
+              (isAuthenticated)
+                ? <UserImageLabel userImg={user.picture} userName={user.name} />
+                : <UserIcon />
             }
 
-            <a>Logo Carrito</a>
+            <ShopCart />
           </div>
         </section>
 
         <section className='header-login'>
           <a href='#'>Home</a>
-          <a href='#'> Iniciar Sesion</a>
+          {(isAuthenticated)
+            ? <button onClick={() => logout()}> Cerrar sesión</button>
+            : <button onClick={handleClickLoadingLogin}>Iniciar sesión</button>}
         </section>
       </header>
 
       <main>
         <nav>
           <ul>
-            {state.perfil.map((item, index) => {
-              return (
-                <li key={index}>
-                  <a href='#'> {item} </a>
-                </li>
-              )
-            })}
+            <li>
+              <button onClick={handleClickMenu}> Categorias </button>
+              {showBar && <Navbar />}
+            </li>
           </ul>
         </nav>
         <aside>

@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.header {
+  width: 100vw;
+  height: auto;
+  padding: 25px;
+}
+
+.header-contacto {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 55px;
+}
+.header-contacto-info {
+  display: flex;
+  gap: 10px ;
+}
+.header-contacto-links {
+  display: flex;
+  gap: 10px ;
+}
+
+.header-search {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-bar {
+  width: 40%;
+  height: 40px;
+}
+.header-search-user {
+  display: flex;
+  gap: 15px ;
+}

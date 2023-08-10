@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 const useProfileReducer = () => {
   const [state, dispatch] = useReducer(profileReducer, initialState)
-  const { user, loginWithRedirect, isAuthenticated } = useAuth0()
+  const { user, isAuthenticated, logout, loginWithPopup } = useAuth0()
 
   const selectInvitado = () => {
     dispatch({
@@ -16,41 +16,41 @@ const useProfileReducer = () => {
     dispatch({
       type: 'ADMINISTRADOR'
     })
-    loginWithRedirect()
+    loginWithPopup()
   }
 
   const selectProfesional = () => {
     dispatch({
       type: 'PROFESIONAL'
     })
-    loginWithRedirect()
+    loginWithPopup()
   }
 
   const selectVeterinaria = () => {
     dispatch({
       type: 'VETERINARIA'
     })
-    loginWithRedirect()
+    loginWithPopup()
   }
 
   const selectCliente = () => {
     dispatch({
       type: 'CLIENTE'
     })
-    loginWithRedirect()
+    loginWithPopup()
   }
 
-  return { state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria, user, isAuthenticated }
+  return { state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria, user, isAuthenticated, logout }
 }
 
 export const ProfileContext = createContext()
 
 export const ProfileProvider = ({ children }) => {
-  const { state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria, user, isAuthenticated } = useProfileReducer()
+  const { state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria, user, isAuthenticated, logout } = useProfileReducer()
 
   return (
     <ProfileContext.Provider
-      value={{ state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria, user, isAuthenticated }}
+      value={{ state, selectCliente, selectInvitado, selectAdministrador, selectProfesional, selectVeterinaria, user, isAuthenticated, logout }}
     >
       {children}
     </ProfileContext.Provider>
