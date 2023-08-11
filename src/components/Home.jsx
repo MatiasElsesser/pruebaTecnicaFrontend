@@ -4,18 +4,24 @@ import { UserIcon, ShopCart, ShopIcon, SearchIcon } from '../icons/icons'
 import { UserImageLabel } from './UserImageLabel'
 import { Navbar } from './Navbar'
 import { SelectProfile } from './SelectProfile'
+import { ProductsPage } from './ProductPage'
 import './Home.css'
 
 export const Home = () => {
-  const { user, isAuthenticated, logout } = useContext(ProfileContext)
+  const { state, user, isAuthenticated, logout } = useContext(ProfileContext)
   const [showBar, setShowBar] = useState(false)
   const [loadingLogin, setLoadinLogin] = useState(false)
+  const [numberProduct, setNumberProduct] = useState(0)
 
   const handleClickMenu = () => {
     setShowBar(!showBar)
   }
   const handleClickLoadingLogin = () => {
     setLoadinLogin(!loadingLogin)
+  }
+  const handleClickProduct = (numIndex) => {
+    console.log(numberProduct)
+    setNumberProduct(numIndex)
   }
   return (
     <>
@@ -60,7 +66,7 @@ export const Home = () => {
           <div className='header-login-nav'>
             <button className='navBar-btn' onClick={handleClickMenu}> Categorias </button>
             <nav>
-              {showBar && <Navbar />}
+              {showBar && <Navbar callBackProduct={handleClickProduct} />}
             </nav>
           </div>
           <div className='header-login-btn'>
@@ -73,9 +79,11 @@ export const Home = () => {
       </header>
 
       <main>
-        <aside>
-          <p>lorem ipsun</p>
-        </aside>
+        <ProductsPage
+          products={
+          state.perfil[numberProduct]
+        }
+        />
       </main>
     </>
   )

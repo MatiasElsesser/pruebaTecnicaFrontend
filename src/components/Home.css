@@ -70,6 +70,9 @@ hr {
   left: 25px;
   text-align: center;
 }
+.header-login-nav nav {
+  width: 10rem ;
+}
 .navBar-btn {
   border-radius: 15px 15px 0 0;
   border: none;
@@ -82,4 +85,7 @@ hr {
 main {
   width: 100%;
   padding: 0 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
